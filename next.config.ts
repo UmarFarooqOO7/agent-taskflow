@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
       { hostname: "avatars.githubusercontent.com" },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/.well-known/:path*",
+        destination: "/api/well-known/:path*",
+      },
+    ]
+  },
   async headers() {
     return [
       {

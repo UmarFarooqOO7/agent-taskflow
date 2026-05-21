@@ -8,6 +8,7 @@ export const authConfig: NextAuthConfig = {
   pages: { signIn: "/login" },
   callbacks: {
     authorized({ auth: session, request: { nextUrl } }) {
+      if (nextUrl.pathname.startsWith("/.well-known/")) return true
       const isLoggedIn = !!session?.user
       const isOnLogin = nextUrl.pathname === "/login"
       if (isOnLogin) return true

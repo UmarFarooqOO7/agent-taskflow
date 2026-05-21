@@ -1,10 +1,12 @@
+import { NextResponse } from "next/server"
+
 export const dynamic = "force-dynamic"
 
 export async function GET(request: Request) {
   const url = new URL(request.url)
   const origin = process.env.NEXTAUTH_URL?.replace(/\/$/, "") ?? `${url.protocol}//${url.host}`
 
-  return Response.json({
+  return NextResponse.json({
     issuer: origin,
     authorization_endpoint: `${origin}/api/oauth/authorize`,
     token_endpoint: `${origin}/api/oauth/token`,
